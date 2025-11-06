@@ -42,4 +42,5 @@ class AppRoutes {
 
     // GetPage(name: splashScreen, page: () => SplashScreen()),
   ];
+  
 }

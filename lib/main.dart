@@ -1,4 +1,5 @@
 import 'package:final_poject_sw_engineering/routes/app_routes.dart';
+import 'package:final_poject_sw_engineering/routes/route_resolver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           : const Size(430, 932), // Mobile size
       builder: (context, child) {
         return Directionality(
-          textDirection: TextDirection.ltr, // Set the desired direction here
+          textDirection: TextDirection.ltr,
           child: GetMaterialApp(
             locale: const Locale('en'),
             theme: ThemeData(
@@ -54,13 +55,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Ecommerce',
             initialBinding: AppBindings(),
-            initialRoute: token == null
-                ? AppRoutes.loginScreen
-                : role == 'admin'
-                ? AppRoutes.adminDashboardScreen
-                : role == 'seller'
-                ? AppRoutes.sellerDashboard
-                : AppRoutes.bottomNavScreen,
+            initialRoute: RouteResolver.resolveInitial(token, role),
             getPages: AppRoutes.getPages,
           ),
         );
